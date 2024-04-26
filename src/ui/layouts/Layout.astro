@@ -1,0 +1,37 @@
+---
+import './global.css'
+import { PreviewPng } from '@static/images'
+import MetaConfig from './MetaConfig.astro'
+
+type Props = {
+  title: string
+  description: string
+  overwritePreview?: string
+}
+
+const { title, description, overwritePreview } = Astro.props
+---
+
+<!doctype html>
+<html lang='en' class='view-transition'>
+  <head>
+    <MetaConfig
+      title={title}
+      description={description}
+      preview={overwritePreview ? overwritePreview : PreviewPng.src}
+    />
+    <link rel='preload' as='image' href='/sandias.jpg' />
+  </head>
+  <body class='h-screen overflow-hidden relative' transition:persist>
+    <!-- Persistent background layer -->
+    <div class='fixed inset-0 z-[-1] bg-sandias' transition:persist></div>
+
+    <slot />
+
+    <style is:global>
+      img {
+        content-visibility: auto;
+      }
+    </style>
+  </body>
+</html>
