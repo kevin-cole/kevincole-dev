@@ -1,4 +1,4 @@
 export enum HeaderTabs {
-  OVERVIEW = 'overview',
-  DETAILS = 'details'
+  OVERVIEW = 'home',
+  DETAILS = 'resume'
 }
