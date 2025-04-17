@@ -111,7 +111,7 @@ const Work = () => (
     <div id='skills' className='flex flex-col'>
       <section id='Skills' className='mt-20 mb-10 px-4 bg-transparent'>
         <div
-          className="p-4 rounded-xl max-w-[1480px] mx-auto bg-[url('code-waterfall.gif')] bg-top bg-no-repeat bg-cover filter brightness-150"
+          className="p-4 rounded-xl max-w-[1480px] mx-auto bg-[url('/code-waterfall.gif')] bg-top bg-no-repeat bg-cover filter brightness-150"
         >
           <div className='flex flex-row flex-wrap p-4'>
             <SkillsTree className='p-2' items={[languageSkills]} />
