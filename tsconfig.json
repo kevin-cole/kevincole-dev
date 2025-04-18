@@ -7,7 +7,6 @@
     "paths": {
       "@pages/*": ["pages/*"],
       "@libs/*": ["libs/*"],
-      "@static/*": ["static/*"],
       "@ui/layouts/*": ["ui/layouts/*"],
       "@ui/components/*": ["ui/components/*"],
       "@ui/blocks/*": ["ui/blocks/*"],

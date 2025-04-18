@@ -65,7 +65,6 @@ export default defineConfig({
         '@ui': new URL('./src/ui', import.meta.url).pathname,
         '@utils': new URL('./src/libs/utils', import.meta.url).pathname,
         '@hooks': new URL('./src/hooks', import.meta.url).pathname,
-        '@static': new URL('./src/static', import.meta.url).pathname,
       }
     }
   },

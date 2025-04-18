@@ -1,15 +1,14 @@
 ---
 import './global.css'
-import { PreviewPng } from '@static/images'
 import MetaConfig from './MetaConfig.astro'
 
 type Props = {
   title: string
   description: string
-  overwritePreview?: string
+  preview: string
 }
 
-const { title, description, overwritePreview } = Astro.props
+const { title, description, preview } = Astro.props
 ---
 
 <!doctype html>
@@ -18,7 +17,7 @@ const { title, description, overwritePreview } = Astro.props
     <MetaConfig
       title={title}
       description={description}
-      preview={overwritePreview ? overwritePreview : PreviewPng.src}
+      preview={preview}
     />
     <link rel='preload' as='image' href='/sandias.jpg' />
   </head>
