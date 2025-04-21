@@ -10,11 +10,27 @@ type Props = {
 
 const { title, description, preview }: Props = Astro.props
 const skills = skillNames.join(', ')
+const staticSeo = [
+  'software engineers',
+  'software developer',
+  'software company',
+  'business software',
+  'programming software',
+  'application development',
+  'coding software',
+  'software design',
+  'software management',
+  'web design',
+  'software co',
+  'web applications',
+  'web application development',
+  'custom software development',
+]
 /**
  * keep whole metadata in one place
  */
 const metaData = {
-  keywords: `static site, ${skills}`,
+  keywords: `${staticSeo} ${skills}`,
   default: {
     url: siteUrl,
     type: 'website',
