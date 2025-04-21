@@ -2,7 +2,6 @@ import { HeaderTabs } from '@libs/enums'
 import { useState, useEffect, type FC } from 'react'
 
 import { ContactButton } from '@ui/components/ContactButton'
-
 import { SiteHeader } from '@ui/blocks/SiteHeader'
 import { MobileFooterNav } from '@ui/blocks/MobileFooterNav'
 import { SkillsTree } from '@ui/blocks/SkillsTree'
@@ -103,7 +102,6 @@ const Home: FC<ResizableComponentProps> = ({ innerWidth }) => {
     { innerWidth > TABLET_WIDTH && <DesktopBio />}
     { innerWidth <= TABLET_WIDTH && innerWidth > MOBILE_WIDTH && <TabletBio /> }
     { innerWidth <= MOBILE_WIDTH && <MobileBio /> }
-    <ContactButton innerWidth={innerWidth}/>
   </div>)
 }
 
@@ -161,6 +159,7 @@ export const MainComponent = () => {
       ) : (
         <MobileFooterNav activeTab={activeTab} onTabSwitch={switchTab} />
       )}
+      <ContactButton isMobile={innerWidth <= MOBILE_WIDTH} />
       { activeTab === HeaderTabs.OVERVIEW && <Home innerWidth={innerWidth} />}
       { activeTab === HeaderTabs.DETAILS && <Work />}
     </main>
