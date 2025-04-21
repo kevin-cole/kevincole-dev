@@ -102,7 +102,7 @@ const Home: FC<ResizableComponentProps> = ({ innerWidth }) => {
     { innerWidth > TABLET_WIDTH && <DesktopBio />}
     { innerWidth <= TABLET_WIDTH && innerWidth > MOBILE_WIDTH && <TabletBio /> }
     { innerWidth <= MOBILE_WIDTH && <MobileBio /> }
-    <ContactButton />
+    <ContactButton innerWidth={innerWidth}/>
   </div>)
 }
 
@@ -135,12 +135,21 @@ const Work = () => (
 
 export const MainComponent = () => {
 
+  // This prevents any rendering until client-side mount
+  const [hasMounted, setHasMounted] = useState(false)
+
+  useEffect(() => {
+    setHasMounted(true)
+  }, [])
+
   const [activeTab, setActiveTab] = useState(HeaderTabs.OVERVIEW)
   const innerWidth = useInnerWidth()
 
   const switchTab = (tab: HeaderTabs): void => {
     setActiveTab(tab)
   }
+
+  if (!hasMounted) return null
 
   return (
     <main className='h-full overflow-y-auto'>
