@@ -28,44 +28,47 @@ export const ContactForm: FC<ContactFormProperties> = ({
 
   return (
     <>
-      <h2 className="text-xl font-semibold mb-4">Contact Me</h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-6 bg-white rounded-lg shadow-lg max-w-md w-full">
+      <h2 className="text-xl md:text-2xl font-semibold mb-4 text-center">Contact Me</h2>
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 px-4 py-6 md:p-6 bg-white rounded-lg shadow-lg w-full max-w-md md:mx-auto"
+      >
         <input
           type="text"
           name="name"
           placeholder="name"
           required
-          className="border p-2 rounded"
+          className="border border-gray-300 p-3 rounded text-base"
         />
         <input
           type="text"
           name="company"
           placeholder="company"
           required
-          className="border p-2 rounded"
+          className="border border-gray-300 p-3 rounded text-base"
         />
         <input
           type="email"
           name="email"
           placeholder="email"
           required
-          className="border p-2 rounded"
+          className="border border-gray-300 p-3 rounded text-base"
         />
         <input
-          type="phone"
+          type="tel"
           name="phone"
           placeholder="optional phone"
-          className="border p-2 rounded"
+          className="border border-gray-300 p-3 rounded text-base"
         />
         <textarea
           name="message"
-          placeholder=""
+          placeholder="your message"
           required
-          className="border p-2 rounded h-32"
+          className="border border-gray-300 p-3 rounded text-base h-32 resize-none"
         />
         <button
           type="submit"
-          className="bg-primary text-white py-2 px-4 rounded hover:bg-primary-dark transition"
+          className="bg-primary text-white py-3 px-4 rounded hover:bg-primary-dark transition text-base font-medium"
         >
           Send
         </button>
