@@ -4,6 +4,7 @@ import { useState, useEffect, type FC } from 'react'
 import { ContactButton } from '@ui/components/ContactButton'
 
 import { SiteHeader } from '@ui/blocks/SiteHeader'
+import { MobileFooterNav } from '@ui/blocks/MobileFooterNav'
 import { SkillsTree } from '@ui/blocks/SkillsTree'
 import { EmploymentSection } from '@ui/blocks/EmploymentSection'
 import { EducationSection } from '@ui/blocks/EducationSection'
@@ -153,9 +154,13 @@ export const MainComponent = () => {
 
   return (
     <main className='h-full overflow-y-auto'>
-      <header>
-        <SiteHeader activeTab={activeTab} onTabSwitch={switchTab} />
-      </header>
+      {innerWidth > MOBILE_WIDTH ? (
+        <header>
+          <SiteHeader activeTab={activeTab} onTabSwitch={switchTab} />
+        </header>
+      ) : (
+        <MobileFooterNav activeTab={activeTab} onTabSwitch={switchTab} />
+      )}
       { activeTab === HeaderTabs.OVERVIEW && <Home innerWidth={innerWidth} />}
       { activeTab === HeaderTabs.DETAILS && <Work />}
     </main>
