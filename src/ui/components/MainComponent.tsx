@@ -19,6 +19,7 @@ import {
 
 import { employments } from 'content/employments'
 import { educations } from 'content/education'
+import { TabProvider, useTab } from './TabContext'
 
 const MOBILE_WIDTH = 768
 const TABLET_WIDTH = 1250
@@ -132,6 +133,17 @@ const Work = () => (
   </div>
 )
 
+const ConditionalViews = ({ innerWidth }: { innerWidth: number }) => {
+  const { activeTab } = useTab()
+
+  return (
+    <>
+      { activeTab === HeaderTabs.OVERVIEW && <Home innerWidth={innerWidth} />}
+      { activeTab === HeaderTabs.DETAILS && <Work /> }
+    </>
+  )
+}
+
 export const MainComponent = () => {
 
   // This prevents any rendering until client-side mount
@@ -141,27 +153,23 @@ export const MainComponent = () => {
     setHasMounted(true)
   }, [])
 
-  const [activeTab, setActiveTab] = useState(HeaderTabs.OVERVIEW)
   const innerWidth = useInnerWidth()
-
-  const switchTab = (tab: HeaderTabs): void => {
-    setActiveTab(tab)
-  }
 
   if (!hasMounted) return null
 
   return (
-    <main className='h-full overflow-y-auto'>
-      {innerWidth > MOBILE_WIDTH ? (
-        <header>
-          <SiteHeader activeTab={activeTab} onTabSwitch={switchTab} />
-        </header>
-      ) : (
-        <MobileFooterNav activeTab={activeTab} onTabSwitch={switchTab} />
-      )}
-      <ContactButton isMobile={innerWidth <= MOBILE_WIDTH} />
-      { activeTab === HeaderTabs.OVERVIEW && <Home innerWidth={innerWidth} />}
-      { activeTab === HeaderTabs.DETAILS && <Work />}
-    </main>
+    <TabProvider>
+      <main className='h-full overflow-y-auto'>
+        {innerWidth > MOBILE_WIDTH ? (
+          <header>
+            <SiteHeader/>
+          </header>
+        ) : (
+          <MobileFooterNav/>
+        )}
+        <ContactButton isMobile={innerWidth <= MOBILE_WIDTH} />
+        <ConditionalViews innerWidth={innerWidth} />
+      </main>
+    </TabProvider>
   )
 }

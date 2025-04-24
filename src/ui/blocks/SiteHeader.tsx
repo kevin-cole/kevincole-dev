@@ -2,19 +2,17 @@ import { HeaderTabs } from '@libs/enums'
 import { Button } from 'ui/components/button' // Adjust the import path
 import { useEffect, useState, type FC } from 'react'
 import { Briefcase, Home } from 'lucide-react'
+import { useTab } from '@ui/components/TabContext'
 
-type SiteHeaderProps = {
-  activeTab: HeaderTabs
-  onTabSwitch: (tab: HeaderTabs) => void
-}
+export const SiteHeader: FC = () => {
 
-export const SiteHeader: FC<SiteHeaderProps> = ({ activeTab, onTabSwitch }) => {
+  const { activeTab, switchTab } = useTab()
 
   const [exitingTab, setExitingTab] = useState<HeaderTabs | null>(null)
   const onTab = (tab: HeaderTabs) => {
     if(tab === activeTab) return
     setExitingTab(activeTab)
-    onTabSwitch(tab)
+    switchTab(tab)
   }
   useEffect(() => {
     setExitingTab(null)

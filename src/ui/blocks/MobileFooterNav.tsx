@@ -1,18 +1,16 @@
 import { Home, Briefcase } from 'lucide-react'
 import { HeaderTabs } from '@libs/enums'
 import type { FC } from 'react'
+import { useTab } from '@ui/components/TabContext'
 
-type Props = {
-  activeTab: HeaderTabs
-  onTabSwitch: (tab: HeaderTabs) => void
-}
 
-export const MobileFooterNav: FC<Props> = ({ activeTab, onTabSwitch }) => {
+export const MobileFooterNav: FC = () => {
+  const { activeTab, switchTab } = useTab()
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 bg-secondary border-t border-gray-700 text-white">
       <div className="flex justify-around items-center h-16">
         <button
-          onClick={() => onTabSwitch(HeaderTabs.OVERVIEW)}
+          onClick={() => switchTab(HeaderTabs.OVERVIEW)}
           className={`flex flex-col items-center ${activeTab === HeaderTabs.OVERVIEW ? 'text-turquoise' : 'text-gray-700'}`}
         >
           <Home className="w-6 h-6" />
@@ -20,7 +18,7 @@ export const MobileFooterNav: FC<Props> = ({ activeTab, onTabSwitch }) => {
         </button>
 
         <button
-          onClick={() => onTabSwitch(HeaderTabs.DETAILS)}
+          onClick={() => switchTab(HeaderTabs.DETAILS)}
           className={`flex flex-col items-center ${activeTab === HeaderTabs.DETAILS ? 'text-turquoise' : 'text-gray-700'}`}
         >
           <Briefcase className="w-6 h-6" />
