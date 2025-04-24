@@ -2,11 +2,7 @@ import { type FC, useState } from "react"
 import { Mail, X } from "lucide-react"
 import { ContactForm } from "./ContactForm"
 
-export type ContactButtonProperties = {
-  isMobile: boolean
-}
-
-export const ContactButton: FC<ContactButtonProperties> = ({ isMobile }) => {
+export const ContactButton: FC = () => {
   const [showForm, setShowForm] = useState(false)
   const [contactError, setContactError] = useState(false)
 
@@ -32,10 +28,13 @@ export const ContactButton: FC<ContactButtonProperties> = ({ isMobile }) => {
   if (contactError) return null
 
   if (!showForm) {
-    const buttonClass = isMobile ? 'bottom-20 right-2' : 'top-20 right-8'
     return (
       <a
-        className={`z-40 cursor-pointer fixed bg-secondary text-primary p-4 rounded-full shadow-lg hover:scale-110 transition-transform ${buttonClass}`}
+        className={`
+          fixed z-40 cursor-pointer bg-secondary text-primary p-4 rounded-full shadow-lg
+          hover:scale-110 transition-transform
+          right-2 bottom-20 md:right-8 md:top-20 md:bottom-auto
+        `}
         target="_blank"
         aria-label="Contact Me"
         onClick={onContactClick}
@@ -52,7 +51,7 @@ export const ContactButton: FC<ContactButtonProperties> = ({ isMobile }) => {
     >
       <div className="flex min-h-screen items-center justify-center p-4">
         <div
-          className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md"
+          className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Icon */}
