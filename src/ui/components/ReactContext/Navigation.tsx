@@ -2,9 +2,9 @@ import { HeaderTabs } from '@libs/enums'
 import { Button } from 'ui/components/button' // Adjust the import path
 import { useEffect, useState, type FC } from 'react'
 import { Briefcase, Home } from 'lucide-react'
-import { useTab } from '@ui/components/TabContext'
+import { useTab } from '@ui/components/ReactContext/TabContext'
 
-export const SiteHeader: FC = () => {
+const SiteHeader: FC = () => {
 
   const { activeTab, switchTab } = useTab()
 
@@ -20,7 +20,7 @@ export const SiteHeader: FC = () => {
 
   const whiteBlur = 'before:absolute before:top-0 before:left-0 before:w-2 before:h-full before:bg-gradient-to-l before:from-gray-300 before:to-white before:opacity-0 before:transition-opacity before:duration-300 hover:before:opacity-50'
 
-  const tabBase = 'group w-30 relative py-2 pl-5 rounded-b-none rounded-tr-2xl transition-[width] duration-500 ease-in-out hover:shadow-lg hover:shadow-tab-inactive'
+  const tabBase = 'border border-gray-300 group w-30 relative py-2 pl-5 rounded-b-none rounded-tr-2xl transition-[width] duration-500 ease-in-out hover:shadow-lg hover:shadow-tab-inactive'
   const activeTabClass = 'bg-tab-active text-white shadow-md z-20 hover:bg-tab-active-hover'
   const inactiveTabClass = `bg-tab-inactive text-tab-inactive w-5 overflow-hidden hover:w-30 hover:bg-tab-inactive hover:z-10 ${whiteBlur}`
   const exitingTabClass = 'transition-all duration-500 ease-in-out bg-tab-inactive w-5'
@@ -36,25 +36,25 @@ export const SiteHeader: FC = () => {
 
             <Button
               className={`${tabBase} ${
-                activeTab === HeaderTabs.OVERVIEW
+                activeTab === HeaderTabs.HOME
                   ? activeTabClass
-                  : exitingTab === HeaderTabs.OVERVIEW
+                  : exitingTab === HeaderTabs.HOME
                   ? exitingTabClass
                   : inactiveTabClass
               }`}
-              onClick={() => onTab(HeaderTabs.OVERVIEW)}
+              onClick={() => onTab(HeaderTabs.HOME)}
             >
               <span className={
-                activeTab === HeaderTabs.OVERVIEW
+                activeTab === HeaderTabs.HOME
                   ? ''
-                  : exitingTab === HeaderTabs.OVERVIEW
+                  : exitingTab === HeaderTabs.HOME
                   ? exitingTextClass
                   : inactiveTextClass
               }
               >
                 <div className="flex items-center gap-x-2">
                   <Home className="flex-shrink-0" />
-                  <span className="text-base">{HeaderTabs.OVERVIEW}</span>
+                  <span className="text-base">{HeaderTabs.HOME}</span>
                 </div>
               </span>
             </Button>
@@ -89,3 +89,39 @@ export const SiteHeader: FC = () => {
     </header>
   )
 }
+
+const MobileFooterNav: FC = () => {
+  const { activeTab, switchTab } = useTab()
+  return (
+    <nav className="fixed bottom-0 left-0 right-0 z-50 bg-secondary border-t border-gray-700 text-white">
+      <div className="flex justify-around items-center h-16">
+        <button
+          onClick={() => switchTab(HeaderTabs.HOME)}
+          className={`flex flex-col items-center ${activeTab === HeaderTabs.HOME ? 'text-turquoise' : 'text-gray-700'}`}
+        >
+          <Home className="w-6 h-6" />
+          <span className="text-xs mt-1">{HeaderTabs.HOME}</span>
+        </button>
+
+        <button
+          onClick={() => switchTab(HeaderTabs.DETAILS)}
+          className={`flex flex-col items-center ${activeTab === HeaderTabs.DETAILS ? 'text-turquoise' : 'text-gray-700'}`}
+        >
+          <Briefcase className="w-6 h-6" />
+          <span className="text-xs mt-1">{HeaderTabs.DETAILS}</span>
+        </button>
+      </div>
+    </nav>
+  )
+}
+
+export const Navigation = () => (
+  <>
+    <header className='hidden md:block'>
+      <SiteHeader />
+    </header>
+    <div className='block md:hidden'>
+      <MobileFooterNav />
+    </div>
+  </>
+)

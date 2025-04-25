@@ -1,6 +1,8 @@
 ---
 import Layout from '@ui/layouts/Layout.astro'
-import { MainComponent } from '@ui/components/MainComponent'
+import { ContactButton } from '@ui/components/ContactButton'
+import { Navigation } from '@ui/components/UrlContext/Navigation'
+import { TabView } from '@ui/components/UrlContext/TabView'
 ---
 
 <Layout
@@ -8,5 +10,9 @@ import { MainComponent } from '@ui/components/MainComponent'
   description='Fullstack Software Developer'
   preview='/preview.png'
 >
-  <MainComponent client:load />
+  <main class='h-full overflow-y-auto'>
+    <Navigation client:load />
+    <ContactButton client:load />
+    <TabView client:load />
+  </main>
 </Layout>

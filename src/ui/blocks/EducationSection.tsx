@@ -16,7 +16,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
   return (
     <div className="max-w-6xl mx-auto">
       <div className="gap-8">
-        {educations.map((education, index) => {
+        {educations.map((education) => {
           return (
             <div
               className="p-8 rounded-xl transition-all opacity-90 hover:opacity-100"
@@ -26,7 +26,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
                 backgroundRepeat: 'no-repeat',
                 filter: 'brightness(1)'
               }}
-              key={index}
+              key={education.institution}
             >
               <a className="flex flex-row items-center" target="_blank" href={education.url}>
                 <GraduationCap className="w-12 h-12 text-primary mb-4" />
@@ -35,7 +35,7 @@ export const EducationSection: FC<EducationSectionProps> = ({
                 </h3>
               </a>
               {
-                education.degrees.map(degree => (<p className="text-h5 font-bold tex-primary mb-2">{degree.degree}</p>))
+                education.degrees.map((degree, index) => (<p key={index} className="text-h5 font-bold tex-primary mb-2">{degree.degree}</p>))
               }
             </div>
           )

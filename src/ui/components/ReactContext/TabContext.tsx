@@ -9,7 +9,7 @@ type TabContextType = {
 const TabContext = createContext<TabContextType | undefined>(undefined)
 
 export const TabProvider = ({ children }: { children: ReactNode }) => {
-  const [activeTab, setActiveTab] = useState(HeaderTabs.OVERVIEW)
+  const [activeTab, setActiveTab] = useState(HeaderTabs.HOME)
 
   const switchTab = (tab: HeaderTabs) => {
     setActiveTab(tab)
