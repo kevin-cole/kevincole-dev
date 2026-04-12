@@ -14,7 +14,7 @@ export type Education = {
 
 export const educations: Education[] = [
   {
-    institution: 'The University if Texas at Austin',
+    institution: 'The University of Texas at Austin',
     degrees: [
       {
         degree: 'BS in Computer Sciences',

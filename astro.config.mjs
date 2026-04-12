@@ -27,10 +27,10 @@ export default defineConfig({
         item.changefreq = "weekly"
         item.lastmod = date
 
-        // if you want to exclude a page from the sitemap, do it here
-        // if (/exclude-from-sitemap/.test(item.url)) {
-        //     return undefined;
-        // }
+        // Exclude noindex pages from sitemap
+        if (/\/(resume|with-react-context)\/?$/.test(item.url)) {
+          return undefined
+        }
 
         // if any page needs a different priority, changefreq, or lastmod, uncomment the following lines and adjust as needed
         // if (/test-sitemap/.test(item.url)) {

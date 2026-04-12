@@ -8,6 +8,7 @@ export const Hero = () => (
       <div className='flex gap-4 mt-2'>
         <a href='https://github.com/kevin-cole' target='_blank' rel='noopener noreferrer' className='text-white hover:underline text-sm'>GitHub</a>
         <a href='https://www.linkedin.com/in/kevinleecole' target='_blank' rel='noopener noreferrer' className='text-white hover:underline text-sm'>LinkedIn</a>
+        <a href='/resume' className='text-white hover:underline text-sm'>Resume</a>
       </div>
     </div>
   </div>

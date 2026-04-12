@@ -1,0 +1,129 @@
+---
+import '../ui/layouts/global.css'
+import { employments } from '../content/employments'
+import { educations } from '../content/education'
+import { skillsTree, type SkillTree } from '../content/skills'
+
+// Nodes with these names are organizational groupings, not skills — recurse into their children
+const GROUPING_LABELS = new Set([
+  'frameworks', 'libraries', 'datastores', 'concepts',
+  'low code', 'apis', 'ECMAScript', 'sql',
+])
+
+function collectNames(node: SkillTree): string[] {
+  if (!node.items) return [node.name]
+  if (GROUPING_LABELS.has(node.name)) return node.items.flatMap(collectNames)
+  // Named technology with sub-items (react, laravel, aws, etc.) — include the name, stop recursing
+  return [node.name]
+}
+
+const skillSections = skillsTree.map(category => ({
+  name: category.name,
+  skills: category.items?.flatMap(collectNames) ?? [],
+}))
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Kevin Cole — Resume</title>
+    <style>
+      @media print {
+        .no-print { display: none !important; }
+        body { padding: 0 !important; }
+        a { color: inherit !important; text-decoration: none !important; }
+        @page { margin: 0.65in; }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900 font-sans max-w-[750px] mx-auto px-10 py-10 text-sm leading-relaxed">
+
+    <!-- Toolbar (hidden on print) -->
+    <div class="no-print flex justify-between items-center mb-8 pb-4 border-b border-gray-200">
+      <a href="/" class="text-gray-500 hover:text-gray-700 text-xs">← Back to site</a>
+      <button
+        onclick="window.print()"
+        class="bg-gray-900 text-white text-xs font-medium px-4 py-2 rounded hover:bg-gray-700 transition-colors cursor-pointer"
+      >
+        Download PDF
+      </button>
+    </div>
+
+    <!-- Header -->
+    <header class="mb-5">
+      <h1 class="text-3xl font-bold text-gray-900 tracking-tight">Kevin Cole</h1>
+      <div class="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-gray-600 text-xs">
+        <a href="mailto:kev.cole@yahoo.com" class="hover:underline">kev.cole@yahoo.com</a>
+        <span>+1 (512) 695-9682</span>
+        <a href="https://github.com/kevin-cole" class="hover:underline">github.com/kevin-cole</a>
+        <a href="https://www.linkedin.com/in/kevinleecole" class="hover:underline">linkedin.com/in/kevinleecole</a>
+        <a href="https://www.kevincole.dev" class="hover:underline">kevincole.dev</a>
+      </div>
+    </header>
+
+    <hr class="border-gray-300 mb-5" />
+
+    <!-- Summary -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Summary</h2>
+      <p class="text-gray-800">
+        Full stack software developer with 20+ years of experience building and maintaining web
+        applications, APIs, and cloud infrastructure — primarily for early-stage startups. Proficient
+        across many languages and architectures, with broad experience from CI/CD to CSS. Fast learner
+        who enjoys collaborating with others and mentoring new developers.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Skills</h2>
+      <div class="space-y-1">
+        {skillSections.map(section => (
+          <div class="text-gray-800">
+            <span class="font-semibold capitalize">{section.name}:</span>{' '}
+            <span class="text-gray-700">{section.skills.join(', ')}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section class="mb-5">
+      <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Experience</h2>
+      <div class="space-y-5">
+        {employments.map(job => (
+          <div>
+            <div class="flex justify-between items-baseline gap-4">
+              <a href={job.url} class="font-bold text-gray-900 hover:underline">{job.company}</a>
+              <span class="text-gray-500 text-xs shrink-0">{job.dates}</span>
+            </div>
+            <div class="text-gray-500 italic text-xs mb-1">{job.jobTitle}</div>
+            <p class="text-gray-700 mb-1">{job.description}</p>
+            <ul class="list-disc list-outside ml-4 space-y-0.5 text-gray-700">
+              {job.bullets.map(bullet => (
+                <li>{bullet}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-3">Education</h2>
+      <div class="space-y-2">
+        {educations.map(edu => (
+          <div>
+            <a href={edu.url} class="font-bold text-gray-900 hover:underline">{edu.institution}</a>
+            <div class="text-gray-700">{edu.degrees.map(d => d.degree).join(' · ')}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+  </body>
+</html>
