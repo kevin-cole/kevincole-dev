@@ -6,9 +6,10 @@ type Props = {
   title: string
   description: string
   preview: string
+  noindex?: boolean
 }
 
-const { title, description, preview }: Props = Astro.props
+const { title, description, preview, noindex = false }: Props = Astro.props
 const skills = skillNames.join(', ')
 const staticSeo = [
   'software engineers',
@@ -30,7 +31,7 @@ const staticSeo = [
  * keep whole metadata in one place
  */
 const metaData = {
-  keywords: `${staticSeo} ${skills}`,
+  keywords: `${staticSeo.join(', ')}, ${skills}`,
   default: {
     url: siteUrl,
     type: 'website',
@@ -70,7 +71,7 @@ const metaData = {
 
 <meta
   name='robots'
-  content='index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'
+  content={noindex ? 'noindex, nofollow' : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1'}
 />
 
 <!-- default ones -->
@@ -98,3 +99,19 @@ const metaData = {
 <meta property='twitter:url' content={metaData.twitter.url} />
 
 <title>{title}</title>
+
+<script type='application/ld+json' set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Kevin Cole",
+  "url": siteUrl,
+  "email": "kev.cole@yahoo.com",
+  "telephone": "+15126959682",
+  "jobTitle": "Full Stack Software Developer",
+  "description": description,
+  "image": `${siteUrl}/kevin-cole.jpg`,
+  "sameAs": [
+    "https://github.com/kevin-cole",
+    "https://www.linkedin.com/in/kevinleecole"
+  ]
+})} />

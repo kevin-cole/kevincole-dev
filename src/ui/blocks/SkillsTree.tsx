@@ -9,7 +9,7 @@ type SkillsTreeProps = {
 
 const getIconData = (type: SkillTreeItemIconType) => {
   return type === SkillTreeItemIconType.Folder
-    ? { Icon: Folder, iconClassName: 'text-blue-400' }
+    ? { Icon: Folder, iconClassName: 'text-primary/60' }
     : { Icon: File, iconClassName: 'text-primary/60' }
 }
 
@@ -38,11 +38,11 @@ export const SkillsTree: FC<SkillsTreeProps> = ({
           />
           {
             item.url
-             ? <a className="text-white font-mono hover:text-blue-500" href={item.url} target="_blank">{item.name}</a>
-             : <span className="text-white font-mono">{item.name}</span>
+             ? <a className="text-black font-mono hover:text-blue-500" href={item.url} target="_blank">{item.name}</a>
+             : <span className="text-black font-mono">{item.name}</span>
           }
           {item.description && (
-            <span className="text-white text-sm hidden md:inline-block">
+            <span className="text-black text-sm hidden md:inline-block">
               # {item.description}
             </span>
           )}

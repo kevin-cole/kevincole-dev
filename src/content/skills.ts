@@ -26,9 +26,41 @@ export const fullStackFrameworkSkills: SkillTree = {
     },
     {
       name: 'laravel',
-      iconType: SkillTreeItemIconType.File,
+      iconType: SkillTreeItemIconType.Folder,
+      items: [
+        {
+          name: 'livewire',
+          iconType: SkillTreeItemIconType.File,
+        },
+
+      ]
     },
   ],
+}
+
+export const aiSkills: SkillTree = {
+  name: 'ai coding',
+  iconType: SkillTreeItemIconType.Folder,
+  items: [
+    {
+      name: 'claude code',
+      iconType: SkillTreeItemIconType.Folder,
+      items: [
+        {
+          name: 'git worktrees',
+          iconType: SkillTreeItemIconType.File
+        },
+      ]
+    },
+    {
+      name: 'cursor',
+      iconType: SkillTreeItemIconType.File,
+    },
+    {
+      name: 'chatGPT',
+      iconType: SkillTreeItemIconType.File,
+    }
+  ]
 }
 
 export const languageSkills: SkillTree = {
@@ -36,7 +68,7 @@ export const languageSkills: SkillTree = {
   iconType: SkillTreeItemIconType.Folder,
   items: [
     {
-      name: 'ECMAScrypt',
+      name: 'ECMAScript',
       iconType: SkillTreeItemIconType.Folder,
       items: [
         {
@@ -273,7 +305,7 @@ export const infrastructureSkills = {
       iconType: SkillTreeItemIconType.File
     },
     {
-      name: 'sst - serverless stack',
+      name: 'sst',
       iconType: SkillTreeItemIconType.File
     },
     {
@@ -297,7 +329,7 @@ export const integrationsSkills: SkillTree = {
       url: 'https://stripe.com/'
     },
     {
-      name: 'twillio',
+      name: 'twilio',
       iconType: SkillTreeItemIconType.File,
       url: 'https://www.twilio.com/en-us'
     },
@@ -332,6 +364,7 @@ export const integrationsSkills: SkillTree = {
 export const skillsTree: SkillTree[] = [
   languageSkills,
   fullStackFrameworkSkills,
+  aiSkills,
   frontEndSkills,
   backendSkills,
   infrastructureSkills,

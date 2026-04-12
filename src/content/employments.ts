@@ -11,7 +11,7 @@ export type Employment = {
 const emds: Employment = {
   company: 'e-MDs',
   jobTitle: 'Software Developer and Manager',
-  dates: '2005 - 2112',
+  dates: '2005 - 2012',
   description: 'Client server EMR (electronic medical records) application written in Delphi eventually migrated to a javascript/jquery online application',
   bullets: [
     'Maintained and improved Charting application including use of natural language processing methodologies',
@@ -27,7 +27,7 @@ const emds: Employment = {
 const generationReady: Employment = {
   company: 'Generation Ready',
   jobTitle: 'Software Developer',
-  dates: '2012 - 2114',
+  dates: '2012 - 2014',
   description: 'Educational CRM and Consultant Solutions',
   bullets: [
     'Maintain legacy CRM written in proprietary PHP framework',
@@ -51,6 +51,20 @@ const favor: Employment = {
   url: 'https://www.favordelivery.com/',
   image: '/favor.svg'
 }
+const oseNewMexico: Employment = {
+  company: 'OSE of New Mexico',
+  jobTitle: 'Software Developer',
+  dates: '2025 - Present',
+  description: 'State agency managing New Mexico water rights',
+  bullets: [
+    'Hired to complete a full rebuild of a legacy Access-based water rights management application into a modern Laravel application utilizing Livewire',
+    'Architected a framework to easily recreate legal reports required for business operations that export wysiwyg to pdf and MS Word',
+    'Oversaw ETL process to ensure all water right data is properly transferred to a new SQL schema',
+    'Worked with business owners to expedite delivery in 8 months',
+  ],
+  url: 'https://www.ose.nm.gov/',
+  image: '/ose-logo.png'
+}
 const buildforce: Employment = {
   company: 'buildforce',
   jobTitle: 'Staff Software Engineer and Architect',
@@ -69,6 +83,7 @@ const buildforce: Employment = {
 }
 
 export const employments: Employment[] = [
+  oseNewMexico,
   buildforce,
   favor,
   generationReady,

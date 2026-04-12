@@ -55,7 +55,7 @@ export const EmploymentSection: FC<EmploymentSectionProps> = ({
 
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
         {employments.map((employment) => <EmploymentComponent key={employment.company} employment={employment} />)}
       </div>
     </div>
